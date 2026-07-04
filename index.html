@@ -1,0 +1,1991 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+
+<title>ELIRAM TECHNOLOGY | Innovation • Technologie • Solutions</title>
+
+<!-- GOOGLE FONTS -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- FONT AWESOME -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+<!-- BOOTSTRAP -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+
+/* =====================================================
+RESET & BASE
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+html{
+    font-size:16px;
+    -webkit-text-size-adjust:100%;
+    -moz-text-size-adjust:100%;
+    text-size-adjust:100%;
+}
+
+body{
+    font-family:'Poppins', sans-serif;
+    background:#08152E;
+    color:#fff;
+    overflow-x:hidden;
+    transition: background 0.5s ease, color 0.5s ease;
+    cursor: default !important;
+    min-height:100vh;
+    width:100%;
+    max-width:100vw;
+}
+
+/* Curseur personnalisé désactivé */
+.cursor-dot, .cursor-outline {
+    display: none !important;
+}
+
+/* =====================================================
+BARRE DE PROGRESSION
+===================================================== */
+
+#progressBar{
+    position:fixed;
+    top:0;
+    left:0;
+    height:4px;
+    background:linear-gradient(90deg,#17A8F5,#27E1FF,#17A8F5);
+    background-size:200% 100%;
+    z-index:99999;
+    transition: width 0.1s ease;
+    animation: progressGlow 2s linear infinite;
+    box-shadow:0 0 15px rgba(39,225,255,0.6);
+}
+
+@keyframes progressGlow{
+    0%{ background-position:0% 50%; }
+    100%{ background-position:200% 50%; }
+}
+
+/* =====================================================
+VARIABLES
+===================================================== */
+
+:root{
+    --blue:#17A8F5;
+    --dark:#0A1F44;
+    --cyan:#27E1FF;
+    --white:#FFFFFF;
+    --gray:#D9E1E8;
+}
+
+/* MODE CLAIR */
+body.light-mode{
+    background:#f5f7fa;
+    color:#1a1a2e;
+}
+
+body.light-mode .navbar-custom{
+    background:#ffffff !important;
+    box-shadow:0 2px 20px rgba(0,0,0,.1);
+}
+
+body.light-mode .hero h1,
+body.light-mode .section-title h2,
+body.light-mode .hero p,
+body.light-mode .section-title p,
+body.light-mode .about-card h3,
+body.light-mode .service-content h3,
+body.light-mode .counter-box h2,
+body.light-mode .info-box h4,
+body.light-mode footer h2{
+    color:#1a1a2e !important;
+}
+
+body.light-mode .hero p,
+body.light-mode .section-title p,
+body.light-mode .about-card p,
+body.light-mode .service-content p,
+body.light-mode .info-box p{
+    color:#4a4a6a !important;
+}
+
+body.light-mode .brand-name,
+body.light-mode .nav-link{
+    color:#0A1F44 !important;
+}
+
+body.light-mode .about-card,
+body.light-mode .service-card,
+body.light-mode .contact-form,
+body.light-mode .info-box,
+body.light-mode .hero-card,
+body.light-mode .stat,
+body.light-mode .newsletter-popup{
+    background:rgba(255,255,255,0.9) !important;
+    border:1px solid rgba(0,0,0,0.08) !important;
+    box-shadow:0 4px 20px rgba(0,0,0,0.05);
+}
+
+body.light-mode .contact-form input,
+body.light-mode .contact-form textarea{
+    background:rgba(0,0,0,0.03);
+    color:#1a1a2e;
+    border:1px solid rgba(0,0,0,0.1);
+}
+
+body.light-mode #particles{
+    background:
+    radial-gradient(circle at top left, #17A8F515, transparent 30%),
+    radial-gradient(circle at bottom right, #27E1FF15, transparent 30%),
+    linear-gradient(135deg,#f0f4f8,#e8edf5);
+}
+
+/* =====================================================
+CONTAINER
+===================================================== */
+
+.container{
+    max-width:1200px !important;
+    width:100% !important;
+    padding-left:15px !important;
+    padding-right:15px !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+}
+
+/* =====================================================
+NAVBAR - GRAND ET VISIBLE SUR MOBILE
+===================================================== */
+
+.navbar-custom{
+    background:#ffffff !important;
+    padding:0;
+    box-shadow:0 2px 20px rgba(0,0,0,.12);
+    min-height:70px;
+    transition: all 0.3s ease;
+}
+
+.navbar-custom.scrolled{
+    min-height:60px;
+    box-shadow:0 4px 25px rgba(0,0,0,.15);
+}
+
+.navbar-custom .container{
+    padding-top:6px;
+    padding-bottom:6px;
+}
+
+.navbar-brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-right:0;
+    padding:4px 0;
+}
+
+/* LOGO TRÈS GRAND ET VISIBLE */
+.logo-box{
+    width:80px;
+    height:80px;
+    flex-shrink:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition: all 0.3s ease;
+}
+
+.navbar-custom.scrolled .logo-box{
+    width:60px;
+    height:60px;
+}
+
+.logo-box img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    background:transparent;
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,.15)) drop-shadow(0 0 18px rgba(23,168,245,.40));
+}
+
+.brand-container{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    line-height:1.1;
+}
+
+.brand-name{
+    font-size:1.6rem;
+    font-weight:800;
+    color:#0A1F44;
+    margin:0;
+    line-height:1;
+    letter-spacing:1px;
+    transition: all 0.3s ease;
+}
+
+.navbar-custom.scrolled .brand-name{
+    font-size:1.2rem;
+}
+
+.brand-tech{
+    font-size:0.6rem;
+    letter-spacing:4px;
+    color:#17A8F5;
+    white-space:nowrap;
+    font-weight:700;
+}
+
+.brand-slogan{
+    font-size:0.45rem;
+    letter-spacing:2px;
+    color:#6c7a8f;
+    white-space:nowrap;
+    display:block;
+    font-weight:500;
+}
+
+.nav-link{
+    color:#0A1F44 !important;
+    font-weight:600;
+    font-size:0.9rem;
+    padding:8px 16px !important;
+    transition:.3s;
+    position:relative;
+}
+
+.nav-link::after{
+    content:'';
+    position:absolute;
+    bottom:0;
+    left:50%;
+    transform:translateX(-50%);
+    width:0;
+    height:2px;
+    background:linear-gradient(90deg,#17A8F5,#27E1FF);
+    transition: width 0.3s ease;
+    border-radius:2px;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after{
+    width:60%;
+}
+
+.nav-link.active{
+    color:#17A8F5 !important;
+}
+
+.nav-link:hover{
+    color:#17A8F5 !important;
+}
+
+.lang-select{
+    font-size:0.8rem;
+    padding:5px 10px;
+    border-radius:6px;
+    border:1px solid #dcdcdc;
+    background:#fff;
+    color:#0A1F44;
+    cursor:pointer;
+}
+
+.navbar-toggler{
+    border:none;
+    padding:6px 10px;
+    background:rgba(23,168,245,0.08);
+    border-radius:8px;
+}
+
+.navbar-toggler:focus{
+    box-shadow:none;
+}
+
+.navbar-toggler-icon{
+    background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(23,168,245,1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2.5' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    width:1.5em;
+    height:1.5em;
+}
+
+.navbar-nav{
+    gap:4px;
+    align-items:center;
+}
+
+/* Mobile navbar collapse */
+@media(max-width:991px){
+    .navbar-collapse{ 
+        background:rgba(10,20,40,0.98); 
+        backdrop-filter:blur(30px); 
+        padding:20px; 
+        border-radius:16px; 
+        margin-top:12px; 
+        border:1px solid rgba(255,255,255,0.08);
+    }
+    .navbar-collapse .nav-link{ 
+        color:rgba(255,255,255,0.95) !important; 
+        font-size:1.05rem; 
+        padding:12px 16px !important; 
+        margin:2px 0;
+        border-radius:8px;
+    }
+    .navbar-collapse .nav-link:hover{
+        background:rgba(255,255,255,0.08);
+    }
+    .lang-select{
+        background:rgba(255,255,255,0.1);
+        color:white;
+        border-color:rgba(255,255,255,0.2);
+    }
+    .lang-select option{
+        color:#0A1F44;
+    }
+}
+
+/* =====================================================
+HERO - RESPONSIVE
+===================================================== */
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    padding-top:90px;
+    padding-bottom:50px;
+}
+
+.hero-badge{
+    display:inline-block;
+    padding:8px 20px;
+    border-radius:50px;
+    background:rgba(39,225,255,0.12);
+    border:1px solid rgba(39,225,255,0.2);
+    color:var(--cyan);
+    margin-bottom:18px;
+    letter-spacing:2px;
+    font-weight:600;
+    font-size:0.8rem;
+    white-space:nowrap;
+}
+
+.hero h1{
+    font-size:2.8rem;
+    font-weight:800;
+    margin-bottom:18px;
+    line-height:1.15;
+    max-width:900px;
+}
+
+.hero h1 span{
+    background:linear-gradient(90deg,#17A8F5,#27E1FF);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.hero p{
+    color:var(--gray);
+    line-height:1.7;
+    margin-bottom:28px;
+    font-size:1rem;
+    max-width:700px;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.btn-custom{
+    padding:12px 28px;
+    border-radius:14px;
+    font-weight:600;
+    text-decoration:none;
+    transition:0.4s;
+    font-size:0.85rem;
+    cursor:pointer;
+    border:none;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.btn-primary-custom{
+    background:linear-gradient(90deg,#17A8F5,#27E1FF);
+    color:white;
+    border:none;
+    box-shadow:0 0 25px rgba(39,225,255,0.22);
+    position:relative;
+    overflow:hidden;
+}
+
+.btn-primary-custom::before{
+    content:'';
+    position:absolute;
+    top:50%;
+    left:50%;
+    width:0;
+    height:0;
+    background:rgba(255,255,255,0.3);
+    border-radius:50%;
+    transform:translate(-50%,-50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn-primary-custom:hover::before{
+    width:300px;
+    height:300px;
+}
+
+.btn-primary-custom:hover{
+    transform:translateY(-4px);
+    color:white;
+}
+
+.btn-secondary-custom{
+    border:1px solid rgba(255,255,255,0.15);
+    background:rgba(255,255,255,0.06);
+    color:white;
+}
+
+.btn-secondary-custom:hover{
+    background:rgba(255,255,255,0.1);
+    color:white;
+}
+
+/* =====================================================
+HERO CARD
+===================================================== */
+
+.hero-card{
+    background:rgba(255,255,255,0.08);
+    border-radius:24px;
+    padding:28px;
+    backdrop-filter:blur(20px);
+    border:1px solid rgba(39,225,255,0.15);
+    box-shadow:0 0 30px rgba(39,225,255,0.15);
+    width:100%;
+}
+
+.hero-card h2{
+    color:var(--cyan);
+    text-align:center;
+    margin-bottom:22px;
+    font-weight:700;
+    font-size:1.2rem;
+}
+
+.stat{
+    background:rgba(255,255,255,0.06);
+    padding:18px;
+    border-radius:16px;
+    text-align:center;
+    transition:0.4s;
+    height:100%;
+}
+
+.stat:hover{
+    transform:translateY(-5px);
+    background:rgba(255,255,255,0.1);
+}
+
+.stat i{
+    font-size:1.6rem;
+    margin-bottom:4px;
+    color:var(--cyan);
+}
+
+.stat h4{
+    font-weight:700;
+    font-size:0.9rem;
+    margin-bottom:0;
+}
+
+.stat p{
+    font-size:0.7rem;
+    margin:0;
+    opacity:0.8;
+}
+
+/* =====================================================
+SECTIONS
+===================================================== */
+
+section{
+    padding:60px 0;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:45px;
+}
+
+.section-title h2{
+    font-size:2.4rem;
+    font-weight:700;
+    margin-bottom:14px;
+}
+
+.section-title span{
+    color:var(--cyan);
+}
+
+.section-title p{
+    color:var(--gray);
+    max-width:800px;
+    margin:auto;
+    line-height:1.7;
+    font-size:0.95rem;
+    padding:0 10px;
+}
+
+/* =====================================================
+CARDS
+===================================================== */
+
+.about-card,
+.service-card{
+    background:rgba(255,255,255,0.06);
+    border-radius:24px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,0.08);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    height:100%;
+    backdrop-filter:blur(12px);
+}
+
+.about-card:hover,
+.service-card:hover{
+    box-shadow:0 0 30px rgba(39,225,255,0.2);
+}
+
+.about-card-content,
+.service-content{
+    padding:28px;
+}
+
+.about-card i,
+.service-content i{
+    font-size:2rem;
+    color:var(--cyan);
+    margin-bottom:14px;
+}
+
+.about-card h3,
+.service-content h3{
+    font-weight:700;
+    margin-bottom:10px;
+    font-size:1.2rem;
+}
+
+.about-card p,
+.service-content p{
+    color:var(--gray);
+    line-height:1.7;
+    font-size:0.88rem;
+}
+
+.service-image{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+    transition: transform 0.6s ease;
+}
+
+.service-card:hover .service-image{
+    transform:scale(1.05);
+}
+
+/* =====================================================
+STATS
+===================================================== */
+
+.stats-section{
+    background:linear-gradient(135deg,#0A1F44,#17A8F5,#27E1FF);
+    border-radius:28px;
+    padding:50px 25px;
+    box-shadow:0 0 40px rgba(39,225,255,0.15);
+}
+
+.counter-box{
+    text-align:center;
+}
+
+.counter-box h2{
+    font-size:3.2rem;
+    font-weight:800;
+    line-height:1.2;
+}
+
+.counter-box p{
+    font-weight:500;
+    font-size:0.85rem;
+    margin-top:2px;
+}
+
+/* =====================================================
+CONTACT
+===================================================== */
+
+.contact-form{
+    background:rgba(255,255,255,0.06);
+    padding:28px;
+    border-radius:24px;
+    border:1px solid rgba(255,255,255,0.08);
+    backdrop-filter:blur(10px);
+}
+
+.contact-form input,
+.contact-form textarea{
+    width:100%;
+    padding:14px;
+    margin-bottom:16px;
+    border:none;
+    border-radius:12px;
+    background:rgba(255,255,255,0.08);
+    color:white;
+    font-size:0.9rem;
+    transition: all 0.3s ease;
+    outline:none;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus{
+    background:rgba(255,255,255,0.12);
+    box-shadow:0 0 0 3px rgba(23,168,245,0.2);
+}
+
+.contact-form textarea{
+    min-height:120px;
+    resize:vertical;
+}
+
+.info-box{
+    display:flex;
+    gap:14px;
+    margin-bottom:18px;
+    background:rgba(255,255,255,0.05);
+    padding:16px;
+    border-radius:16px;
+    font-size:0.88rem;
+    transition: transform 0.3s ease;
+}
+
+.info-box:hover{
+    transform:translateX(8px);
+    background:rgba(255,255,255,0.08);
+}
+
+.info-box i{
+    width:48px;
+    height:48px;
+    border-radius:12px;
+    background:linear-gradient(90deg,#17A8F5,#27E1FF);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:1.1rem;
+    flex-shrink:0;
+}
+
+.info-box h4{
+    font-weight:700;
+    font-size:0.95rem;
+}
+
+.info-box p{
+    color:var(--gray);
+    margin:0;
+    font-size:0.82rem;
+}
+
+/* =====================================================
+FOOTER AVEC HORLOGE
+===================================================== */
+
+footer{
+    padding:40px 0;
+    text-align:center;
+    border-top:1px solid rgba(255,255,255,0.08);
+    background:rgba(0,0,0,0.15);
+}
+
+footer h2{
+    font-weight:800;
+    font-size:1.6rem;
+}
+
+footer p{
+    font-size:0.85rem;
+    margin-bottom:4px;
+}
+
+.footer-clock{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    padding:10px 0;
+    font-size:0.95rem;
+    font-weight:600;
+    color:var(--cyan);
+    border-top:1px solid rgba(255,255,255,0.06);
+    margin-top:16px;
+    padding-top:16px;
+}
+
+.footer-clock i{
+    color:#27E1FF;
+    font-size:0.95rem;
+}
+
+/* =====================================================
+BOUTONS FLOATING
+===================================================== */
+
+#backToTop{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    width:44px;
+    height:44px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#17A8F5,#27E1FF);
+    border:none;
+    color:white;
+    font-size:1.1rem;
+    z-index:999;
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(20px);
+    transition: all 0.4s ease;
+    box-shadow:0 4px 20px rgba(23,168,245,0.4);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+#backToTop.show{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+}
+
+#backToTop:hover{
+    transform:translateY(-5px);
+    box-shadow:0 8px 30px rgba(23,168,245,0.6);
+}
+
+#themeToggle{
+    position:fixed;
+    bottom:74px;
+    right:20px;
+    width:44px;
+    height:44px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.9);
+    border:2px solid rgba(23,168,245,0.3);
+    color:#0A1F44;
+    font-size:1rem;
+    z-index:999;
+    transition: all 0.4s ease;
+    box-shadow:0 4px 15px rgba(0,0,0,0.1);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+#themeToggle:hover{
+    transform:rotate(30deg);
+    border-color:#17A8F5;
+}
+
+/* =====================================================
+NEWSLETTER POPUP
+===================================================== */
+
+.newsletter-overlay{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.7);
+    z-index:99999;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    opacity:0;
+    visibility:hidden;
+    transition: all 0.4s ease;
+    padding:20px;
+}
+
+.newsletter-overlay.show{
+    opacity:1;
+    visibility:visible;
+}
+
+.newsletter-popup{
+    background:linear-gradient(135deg,#0A1F44,#1a3a6a);
+    padding:30px;
+    border-radius:20px;
+    max-width:400px;
+    width:100%;
+    text-align:center;
+    position:relative;
+    border:1px solid rgba(39,225,255,0.2);
+    box-shadow:0 20px 60px rgba(0,0,0,0.5);
+    transform:translateY(50px);
+    transition: all 0.5s ease;
+}
+
+.newsletter-overlay.show .newsletter-popup{
+    transform:translateY(0);
+}
+
+.newsletter-popup h3{
+    color:#27E1FF;
+    margin-bottom:6px;
+    font-size:1.3rem;
+}
+
+.newsletter-popup p{
+    color:#D9E1E8;
+    font-size:0.85rem;
+    margin-bottom:14px;
+}
+
+.newsletter-popup input{
+    width:100%;
+    padding:12px;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,0.2);
+    background:rgba(255,255,255,0.1);
+    color:white;
+    margin-bottom:12px;
+    font-size:0.85rem;
+}
+
+.newsletter-close{
+    position:absolute;
+    top:10px;
+    right:10px;
+    background:none;
+    border:none;
+    color:white;
+    font-size:1.3rem;
+    cursor:pointer;
+    opacity:0.7;
+    transition:0.3s;
+}
+
+.newsletter-close:hover{
+    opacity:1;
+    transform:rotate(90deg);
+}
+
+/* =====================================================
+TOAST - DÉSACTIVÉ
+===================================================== */
+
+.toast-container{
+    display:none !important;
+}
+
+/* =====================================================
+PARTICULES
+===================================================== */
+
+#particles{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:-2;
+    background:
+    radial-gradient(circle at top left, #27E1FF25, transparent 30%),
+    radial-gradient(circle at bottom right, #17A8F530, transparent 30%),
+    linear-gradient(135deg,#08152E,#0A1F44);
+    transition: background 0.5s ease;
+}
+
+canvas{
+    position:absolute;
+    width:100%;
+    height:100%;
+}
+
+/* =====================================================
+SCROLL EFFECT
+===================================================== */
+
+.hidden{
+    opacity:0;
+    transform:translateY(40px);
+    transition:all 0.8s ease;
+}
+
+.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.reveal-text{
+    opacity:0;
+    transform:translateY(20px);
+    transition: all 0.6s ease;
+}
+
+.reveal-text.visible{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* =====================================================
+ERROR MESSAGES
+===================================================== */
+
+.error-message{
+    color:#ff5050;
+    font-size:0.7rem;
+    margin-top:-10px;
+    margin-bottom:10px;
+    display:none;
+}
+
+.error-message.show{
+    display:block;
+}
+
+.contact-form input.error,
+.contact-form textarea.error{
+    border:2px solid #ff5050 !important;
+    animation: shake 0.5s ease;
+}
+
+.contact-form input.success,
+.contact-form textarea.success{
+    border:2px solid #28c864 !important;
+}
+
+@keyframes shake{
+    0%,100%{ transform:translateX(0); }
+    25%{ transform:translateX(-6px); }
+    50%{ transform:translateX(6px); }
+    75%{ transform:translateX(-3px); }
+}
+
+/* =====================================================
+LOADER
+===================================================== */
+
+#page-loader{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:#08152E;
+    z-index:99999;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+#page-loader.hidden-loader{
+    opacity:0;
+    visibility:hidden;
+}
+
+.loader-logo{
+    width:80px;
+    height:80px;
+    animation: loaderPulse 1.5s ease-in-out infinite;
+}
+
+.loader-logo img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    filter:drop-shadow(0 0 20px rgba(39,225,255,0.5));
+}
+
+.loader-text{
+    color:#27E1FF;
+    font-weight:700;
+    font-size:1rem;
+    margin-top:14px;
+    letter-spacing:3px;
+    animation: loaderFade 1.5s ease-in-out infinite;
+}
+
+.loader-spinner{
+    width:40px;
+    height:40px;
+    border:3px solid rgba(39,225,255,0.2);
+    border-top-color:#27E1FF;
+    border-radius:50%;
+    animation: loaderSpin 0.8s linear infinite;
+    margin-top:18px;
+}
+
+@keyframes loaderPulse{
+    0%,100%{ transform:scale(1); opacity:1; }
+    50%{ transform:scale(1.1); opacity:0.8; }
+}
+
+@keyframes loaderFade{
+    0%,100%{ opacity:0.6; }
+    50%{ opacity:1; }
+}
+
+@keyframes loaderSpin{
+    to{ transform:rotate(360deg); }
+}
+
+/* =====================================================
+RESPONSIVE MOBILE
+===================================================== */
+
+@media(max-width:991px){
+    .hero{ padding-top:80px; padding-bottom:40px; min-height:auto; }
+    .hero h1{ font-size:2.2rem; }
+    .hero p{ font-size:0.9rem; }
+    .hero-badge{ font-size:0.65rem; padding:6px 14px; white-space:normal; }
+    .hero-buttons{ flex-direction:column; }
+    .btn-custom{ width:100%; }
+    .hero-card{ padding:20px; }
+    .hero-card h2{ font-size:1rem; }
+    .stat{ padding:12px; }
+    .stat i{ font-size:1.3rem; }
+    .stat h4{ font-size:0.75rem; }
+    .stat p{ font-size:0.6rem; }
+    
+    .section-title h2{ font-size:1.8rem; }
+    .section-title p{ font-size:0.85rem; }
+    section{ padding:40px 0; }
+    
+    .about-card-content, .service-content{ padding:20px; }
+    .service-image{ height:140px; }
+    .counter-box h2{ font-size:2.2rem; }
+    .counter-box p{ font-size:0.7rem; }
+    .contact-form{ padding:20px; }
+    .info-box{ padding:12px; flex-wrap:wrap; }
+    .info-box i{ width:40px; height:40px; font-size:0.9rem; }
+    
+    .stats-section{ padding:30px 15px; border-radius:20px; }
+    
+    #themeToggle{ bottom:70px; right:15px; width:38px; height:38px; font-size:0.9rem; }
+    #backToTop{ bottom:20px; right:15px; width:38px; height:38px; font-size:0.9rem; }
+    
+    .brand-slogan{ display:none; }
+    .logo-box{ width:60px; height:60px; }
+    .brand-name{ font-size:1.2rem; }
+    .navbar-custom.scrolled .logo-box{ width:48px; height:48px; }
+    .navbar-custom.scrolled .brand-name{ font-size:0.95rem; }
+    .brand-tech{ font-size:0.5rem; }
+}
+
+@media(max-width:575px){
+    .hero{ padding-top:70px; padding-bottom:30px; }
+    .hero h1{ font-size:1.8rem; }
+    .hero p{ font-size:0.82rem; }
+    .hero-badge{ font-size:0.5rem; padding:4px 10px; }
+    .btn-custom{ padding:10px 20px; font-size:0.78rem; }
+    
+    .section-title h2{ font-size:1.5rem; }
+    section{ padding:30px 0; }
+    
+    .about-card i, .service-content i{ font-size:1.6rem; }
+    .about-card h3, .service-content h3{ font-size:1rem; }
+    .about-card p, .service-content p{ font-size:0.78rem; }
+    .service-image{ height:110px; }
+    
+    .stats-section{ padding:25px 10px; border-radius:16px; }
+    .counter-box h2{ font-size:1.8rem; }
+    .counter-box p{ font-size:0.6rem; }
+    
+    .contact-form{ padding:15px; }
+    .contact-form input, .contact-form textarea{ padding:10px; font-size:0.8rem; }
+    .info-box{ padding:10px; gap:10px; }
+    .info-box i{ width:34px; height:34px; font-size:0.8rem; }
+    .info-box h4{ font-size:0.8rem; }
+    .info-box p{ font-size:0.7rem; }
+    
+    footer{ padding:30px 0; }
+    footer h2{ font-size:1.2rem; }
+    .footer-clock{ font-size:0.8rem; }
+    
+    .newsletter-popup{ padding:20px; }
+    .newsletter-popup h3{ font-size:1.1rem; }
+    .newsletter-popup p{ font-size:0.75rem; }
+    .newsletter-popup input{ padding:10px; font-size:0.8rem; }
+    
+    #themeToggle{ width:34px; height:34px; font-size:0.8rem; bottom:60px; right:10px; }
+    #backToTop{ width:34px; height:34px; font-size:0.8rem; bottom:15px; right:10px; }
+    
+    .logo-box{ width:50px; height:50px; }
+    .brand-name{ font-size:1rem; }
+    .navbar-custom.scrolled .logo-box{ width:40px; height:40px; }
+    .navbar-custom.scrolled .brand-name{ font-size:0.8rem; }
+    .brand-tech{ font-size:0.4rem; letter-spacing:2px; }
+    .navbar-toggler{ padding:4px 8px; }
+    .navbar-toggler-icon{ width:1.2em; height:1.2em; }
+}
+
+/* =====================================================
+AUTRES CORRECTIONS
+===================================================== */
+
+.row{
+    margin-left:0 !important;
+    margin-right:0 !important;
+}
+
+.col-lg-6, .col-lg-5, .col-lg-7, .col-lg-4, .col-lg-3,
+.col-md-6, .col-6{
+    padding-left:12px !important;
+    padding-right:12px !important;
+}
+
+.g-5{
+    --bs-gutter-x: 30px !important;
+    --bs-gutter-y: 30px !important;
+}
+
+.g-4{
+    --bs-gutter-x: 20px !important;
+    --bs-gutter-y: 20px !important;
+}
+
+.g-3{
+    --bs-gutter-x: 12px !important;
+    --bs-gutter-y: 12px !important;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- PAGE LOADER -->
+<div id="page-loader">
+    <div class="loader-logo">
+        <img src="logo.svg" alt="ELIRAM">
+    </div>
+    <div class="loader-text">ELIRAM TECHNOLOGY</div>
+    <div class="loader-spinner"></div>
+</div>
+
+<!-- CURSEUR DÉSACTIVÉ -->
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-outline" id="cursorOutline"></div>
+
+<!-- BARRE DE PROGRESSION -->
+<div id="progressBar"></div>
+
+<!-- TOAST DÉSACTIVÉ -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- BACKGROUND -->
+<div id="particles"></div>
+
+<!-- NEWSLETTER POPUP -->
+<div class="newsletter-overlay" id="newsletterOverlay">
+    <div class="newsletter-popup">
+        <button class="newsletter-close" id="newsletterClose">&times;</button>
+        <i class="fa-solid fa-paper-plane" style="font-size:2.5rem;color:#27E1FF;margin-bottom:8px;"></i>
+        <h3>Restez informé !</h3>
+        <p>Inscrivez-vous à notre newsletter pour recevoir nos dernières actualités et offres exclusives.</p>
+        <input type="email" placeholder="Votre adresse email" id="newsletterEmail">
+        <button class="btn-custom btn-primary-custom" id="newsletterSubmit" style="width:100%;">S'inscrire</button>
+    </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg fixed-top navbar-custom" data-bs-theme="light" id="mainNavbar">
+
+<div class="container">
+
+<a class="navbar-brand premium-brand" href="#">
+
+<div class="logo-box">
+    <img src="logo.svg" alt="ELIRAM Logo">
+</div>
+
+<div class="brand-container">
+    <h1 class="brand-name">ELIRAM</h1>
+    <span class="brand-tech">TECHNOLOGY</span>
+    <small class="brand-slogan">Innovation • Technologie • Solutions</small>
+</div>
+
+</a>
+
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+    <span class="navbar-toggler-icon"></span>
+</button>
+
+<div class="collapse navbar-collapse" id="navbarNav">
+
+<ul class="navbar-nav ms-auto">
+    <li class="nav-item"><a class="nav-link active" href="#home" data-lang="home">Accueil</a></li>
+    <li class="nav-item"><a class="nav-link" href="#about" data-lang="about">À propos</a></li>
+    <li class="nav-item"><a class="nav-link" href="#services" data-lang="services">Services</a></li>
+    <li class="nav-item"><a class="nav-link" href="#contact" data-lang="contact">Contact</a></li>
+</ul>
+
+<div class="ms-lg-3 mt-3 mt-lg-0">
+<select id="languageSwitcher" class="lang-select">
+<option value="fr">🇫🇷 FR</option>
+<option value="en">🇬🇧 EN</option>
+</select>
+</div>
+
+</div>
+
+</div>
+
+</nav>
+
+<!-- BOUTONS FLOATING -->
+<button id="backToTop" title="Retour en haut"><i class="fa-solid fa-arrow-up"></i></button>
+<button id="themeToggle" title="Changer le thème"><i class="fa-solid fa-moon"></i></button>
+
+<!-- =====================================================
+HERO
+===================================================== -->
+
+<section class="hero" id="home">
+
+<div class="container">
+
+<div class="row align-items-center g-5">
+
+<div class="col-lg-6 hidden">
+
+<div class="hero-badge" data-lang="badge">INNOVATION • TECHNOLOGIE • SOLUTIONS</div>
+
+<h1 data-lang="heroTitle">La puissance de la technologie africaine</h1>
+
+<p data-lang="heroText">
+ELIRAM TECHNOLOGY accompagne les entreprises, organisations et particuliers dans leur transformation numérique grâce à des solutions modernes, intelligentes et innovantes adaptées aux besoins du marché africain.
+</p>
+
+<div class="hero-buttons">
+<a href="#services" class="btn-custom btn-primary-custom"><span data-lang="discover">Découvrir nos services</span></a>
+<a href="#contact" class="btn-custom btn-secondary-custom"><span data-lang="contactBtn">Nous contacter</span></a>
+</div>
+
+</div>
+
+<div class="col-lg-6 hidden">
+<div class="hero-card">
+<h2 data-lang="expertiseTitle">DOMAINES D'EXPERTISE</h2>
+<div class="row g-3">
+<div class="col-6"><div class="stat"><i class="fa-solid fa-laptop-code"></i><h4>IT</h4><p data-lang="it">Informatique</p></div></div>
+<div class="col-6"><div class="stat"><i class="fa-solid fa-network-wired"></i><h4>NET</h4><p data-lang="network">Réseaux</p></div></div>
+<div class="col-6"><div class="stat"><i class="fa-solid fa-bolt"></i><h4>POWER</h4><p data-lang="energy">Énergie</p></div></div>
+<div class="col-6"><div class="stat"><i class="fa-solid fa-shield-halved"></i><h4>SECURE</h4><p data-lang="security">Sécurité</p></div></div>
+</div>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =====================================================
+ABOUT
+===================================================== -->
+
+<section id="about">
+
+<div class="container">
+
+<div class="section-title hidden">
+<h2><span data-lang="aboutTitle">À propos de ELIRAM</span></h2>
+<p data-lang="aboutDescription">Une entreprise technologique moderne spécialisée dans les systèmes intelligents, les solutions numériques et l'innovation technologique en Afrique.</p>
+</div>
+
+<div class="row g-4">
+
+<div class="col-lg-4 hidden">
+<div class="about-card" data-tilt>
+<div class="about-card-content">
+<i class="fa-solid fa-building"></i>
+<h3 data-lang="presentationTitle">Présentation</h3>
+<p data-lang="presentationText">ELIRAM TECHNOLOGY intervient dans les technologies de l'information, les systèmes électroniques, les télécommunications, l'énergie et la sécurité intelligente.</p>
+</div>
+</div>
+</div>
+
+<div class="col-lg-4 hidden">
+<div class="about-card" data-tilt>
+<div class="about-card-content">
+<i class="fa-solid fa-eye"></i>
+<h3 data-lang="visionTitle">Vision</h3>
+<p data-lang="visionText">Devenir une référence technologique africaine grâce à des solutions innovantes, durables et performantes.</p>
+</div>
+</div>
+</div>
+
+<div class="col-lg-4 hidden">
+<div class="about-card" data-tilt>
+<div class="about-card-content">
+<i class="fa-solid fa-bullseye"></i>
+<h3 data-lang="missionTitle">Mission</h3>
+<p data-lang="missionText">Offrir des solutions technologiques fiables, accessibles et modernes afin d'accélérer la transformation numérique.</p>
+</div>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =====================================================
+SERVICES
+===================================================== -->
+
+<section id="services">
+
+<div class="container">
+
+<div class="section-title hidden">
+<h2><span data-lang="servicesTitle">Nos Services</span></h2>
+<p data-lang="servicesDescription">Des solutions professionnelles adaptées aux besoins des entreprises et des particuliers.</p>
+</div>
+
+<div class="row g-4">
+
+<div class="col-lg-4 col-md-6 hidden">
+<div class="service-card" data-tilt>
+<img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1200&auto=format&fit=crop" class="service-image" alt="IT">
+<div class="service-content">
+<i class="fa-solid fa-laptop-code"></i>
+<h3 data-lang="service1Title">Services Informatiques</h3>
+<p data-lang="service1Text">Développement logiciel, maintenance informatique, sécurisation des données et assistance technique.</p>
+</div>
+</div>
+</div>
+
+<div class="col-lg-4 col-md-6 hidden">
+<div class="service-card" data-tilt>
+<img src="https://images.unsplash.com/photo-1581092921461-eab62e97a780?q=80&w=1200&auto=format&fit=crop" class="service-image" alt="Electronique">
+<div class="service-content">
+<i class="fa-solid fa-microchip"></i>
+<h3 data-lang="service2Title">Systèmes Électroniques</h3>
+<p data-lang="service2Text">Automatisation technologique, équipements intelligents et intégration électronique.</p>
+</div>
+</div>
+</div>
+
+<div class="col-lg-4 col-md-6 hidden">
+<div class="service-card" data-tilt>
+<img src="https://images.unsplash.com/photo-1523961131990-5ea7c61b2107?q=80&w=1200&auto=format&fit=crop" class="service-image" alt="Telecom">
+<div class="service-content">
+<i class="fa-solid fa-network-wired"></i>
+<h3 data-lang="service3Title">Télécommunications</h3>
+<p data-lang="service3Text">Installation réseau, Wi-Fi professionnel, maintenance et optimisation réseau.</p>
+</div>
+</div>
+</div>
+
+<div class="col-lg-4 col-md-6 hidden">
+<div class="service-card" data-tilt>
+<img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=1200&auto=format&fit=crop" class="service-image" alt="Energie">
+<div class="service-content">
+<i class="fa-solid fa-bolt"></i>
+<h3 data-lang="service4Title">Énergie & Électrotechnique</h3>
+<p data-lang="service4Text">Installation électrique, maintenance, onduleurs et solutions énergétiques modernes.</p>
+</div>
+</div>
+</div>
+
+<div class="col-lg-4 col-md-6 hidden">
+<div class="service-card" data-tilt>
+<img src="https://images.unsplash.com/photo-1558002038-1055907df827?q=80&w=1200&auto=format&fit=crop" class="service-image" alt="Security">
+<div class="service-content">
+<i class="fa-solid fa-shield-halved"></i>
+<h3 data-lang="service5Title">Sécurité Technologique</h3>
+<p data-lang="service5Text">Vidéosurveillance, alarmes intelligentes, contrôle d'accès et protection numérique.</p>
+</div>
+</div>
+</div>
+
+<div class="col-lg-4 col-md-6 hidden">
+<div class="service-card" data-tilt>
+<img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1200&auto=format&fit=crop" class="service-image" alt="Automobile">
+<div class="service-content">
+<i class="fa-solid fa-car-side"></i>
+<h3 data-lang="service6Title">Technologies Automobiles</h3>
+<p data-lang="service6Text">Diagnostic automobile, GPS, géolocalisation et solutions connectées.</p>
+</div>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =====================================================
+STATS
+===================================================== -->
+
+<section>
+
+<div class="container">
+
+<div class="stats-section">
+
+<div class="row g-4">
+
+<div class="col-lg-3 col-6"><div class="counter-box"><h2 class="counter" data-target="120">0</h2><p data-lang="projectsCompleted">Projets Réalisés</p></div></div>
+<div class="col-lg-3 col-6"><div class="counter-box"><h2 class="counter" data-target="95">0</h2><p data-lang="clientsSatisfied">Clients satisfaits</p></div></div>
+<div class="col-lg-3 col-6"><div class="counter-box"><h2 class="counter" data-target="15">0</h2><p data-lang="techExperts">Experts Tech</p></div></div>
+<div class="col-lg-3 col-6"><div class="counter-box"><h2 class="counter" data-target="24">0</h2><p data-lang="support247">Support 24/7</p></div></div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =====================================================
+CONTACT
+===================================================== -->
+
+<section id="contact">
+
+<div class="container">
+
+<div class="section-title hidden">
+<h2><span data-lang="contactTitle">Contactez ELIRAM</span></h2>
+<p data-lang="contactDescription">Nous sommes disponibles pour accompagner vos projets technologiques et numériques.</p>
+</div>
+
+<div class="row g-5">
+
+<div class="col-lg-5 hidden">
+
+<div class="info-box">
+<i class="fa-solid fa-location-dot"></i>
+<div>
+<h4 data-lang="addressTitle">Adresse</h4>
+<p data-lang="addressText">N°08, Avenue du Grand Séminaire, Golf Tshamalalé, Commune Annexe, Lubumbashi — RDC</p>
+</div>
+</div>
+
+<div class="info-box">
+<i class="fa-solid fa-phone"></i>
+<div>
+<h4 data-lang="phoneTitle">Téléphone</h4>
+<p>+243 847 179 411</p>
+</div>
+</div>
+
+<div class="info-box">
+<i class="fa-solid fa-envelope"></i>
+<div>
+<h4 data-lang="emailTitle">Email</h4>
+<p>contact@eliramtechnology.com</p>
+</div>
+</div>
+
+</div>
+
+<div class="col-lg-7 hidden">
+
+<form id="contactForm" action="https://formsubmit.co/eliramtechnology5@gmail.com" method="POST" class="contact-form" novalidate>
+
+    <input type="text" name="Nom" id="contactName" data-placeholder-fr="Votre nom" data-placeholder-en="Your name" placeholder="Votre nom" required>
+    <span class="error-message" id="nameError">Veuillez entrer votre nom (minimum 2 caractères)</span>
+
+    <input type="email" name="Email" id="contactEmail" data-placeholder-fr="Votre email" data-placeholder-en="Your email" placeholder="Votre email" required>
+    <span class="error-message" id="emailError">Veuillez entrer un email valide</span>
+
+    <textarea name="Message" id="contactMessage" data-placeholder-fr="Votre message" data-placeholder-en="Your message" placeholder="Votre message" required></textarea>
+    <span class="error-message" id="messageError">Veuillez entrer votre message (minimum 10 caractères)</span>
+
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_subject" value="Nouveau message depuis ELIRAM TECHNOLOGY">
+    <input type="hidden" name="_next" value="https://eliramtechnology.com">
+
+    <button type="submit" class="btn-custom btn-primary-custom border-0">
+        <span data-lang="sendMessage">Envoyer le message</span>
+    </button>
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =====================================================
+FOOTER AVEC HORLOGE
+===================================================== -->
+
+<footer>
+
+<div class="container">
+
+<h2>ELIRAM TECHNOLOGY</h2>
+
+<p data-lang="footerSlogan">Innovation • Technologie • Solutions</p>
+
+<p data-lang="copyright">© 2026 ELIRAM TECHNOLOGY — Tous droits réservés.</p>
+
+<div class="footer-clock">
+    <i class="fa-solid fa-clock"></i>
+    <span id="liveClock">--:--:--</span>
+    <span style="font-weight:300;opacity:0.6;">— RDC</span>
+</div>
+
+</div>
+
+</footer>
+
+<!-- =====================================================
+SCRIPTS
+===================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+
+/* =====================================================
+1. CURSEUR - DÉSACTIVÉ
+===================================================== */
+
+/* =====================================================
+2. BARRE DE PROGRESSION
+===================================================== */
+
+const progressBar = document.getElementById('progressBar');
+
+window.addEventListener('scroll', function(){
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = (scrollTop / docHeight) * 100;
+    progressBar.style.width = progress + '%';
+});
+
+/* =====================================================
+3. HORLOGE RDC
+===================================================== */
+
+function updateClock(){
+    const now = new Date();
+    const rdcTime = new Date(now.getTime() + (2 * 60 * 60 * 1000));
+    const hours = String(rdcTime.getUTCHours()).padStart(2, '0');
+    const minutes = String(rdcTime.getUTCMinutes()).padStart(2, '0');
+    const seconds = String(rdcTime.getUTCSeconds()).padStart(2, '0');
+    document.getElementById('liveClock').textContent = `${hours}:${minutes}:${seconds}`;
+}
+
+updateClock();
+setInterval(updateClock, 1000);
+
+/* =====================================================
+4. NEWSLETTER POPUP
+===================================================== */
+
+const newsletterOverlay = document.getElementById('newsletterOverlay');
+const newsletterClose = document.getElementById('newsletterClose');
+const newsletterSubmit = document.getElementById('newsletterSubmit');
+const newsletterEmail = document.getElementById('newsletterEmail');
+
+setTimeout(function(){
+    if(!localStorage.getItem('newsletterShown')){
+        newsletterOverlay.classList.add('show');
+        localStorage.setItem('newsletterShown', 'true');
+    }
+}, 8000);
+
+newsletterClose.addEventListener('click', function(){
+    newsletterOverlay.classList.remove('show');
+});
+
+newsletterOverlay.addEventListener('click', function(e){
+    if(e.target === newsletterOverlay){
+        newsletterOverlay.classList.remove('show');
+    }
+});
+
+newsletterSubmit.addEventListener('click', function(){
+    const email = newsletterEmail.value.trim();
+    if(email && email.includes('@')){
+        newsletterOverlay.classList.remove('show');
+        newsletterEmail.value = '';
+    }
+});
+
+/* =====================================================
+5. RÉVÉLATION TEXTE
+===================================================== */
+
+const revealTexts = document.querySelectorAll('.section-title p, .hero p, .about-card p, .service-content p');
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('visible'); });
+}, { threshold: 0.2 });
+
+revealTexts.forEach(text => { text.classList.add('reveal-text'); revealObserver.observe(text); });
+
+/* =====================================================
+6. LOADER
+===================================================== */
+
+window.addEventListener('load', function(){
+    setTimeout(() => {
+        document.getElementById('page-loader').classList.add('hidden-loader');
+    }, 1500);
+});
+
+/* =====================================================
+7. NAVBAR SCROLL
+===================================================== */
+
+const navbar = document.getElementById('mainNavbar');
+window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 50));
+
+/* =====================================================
+8. NAVIGATION ACTIVE
+===================================================== */
+
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-link');
+
+function updateActiveLink(){
+    let current = '';
+    sections.forEach(section => {
+        if(window.scrollY >= section.offsetTop - 150 && window.scrollY < section.offsetTop + section.offsetHeight - 150){
+            current = section.getAttribute('id');
+        }
+    });
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if(link.getAttribute('href') === '#' + current) link.classList.add('active');
+    });
+}
+window.addEventListener('scroll', updateActiveLink);
+
+/* =====================================================
+9. RETOUR EN HAUT
+===================================================== */
+
+const backToTopBtn = document.getElementById('backToTop');
+window.addEventListener('scroll', () => backToTopBtn.classList.toggle('show', window.scrollY > 500));
+backToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+/* =====================================================
+10. MODE SOMBRE/CLAIR
+===================================================== */
+
+const themeToggle = document.getElementById('themeToggle');
+const themeIcon = themeToggle.querySelector('i');
+let isDarkMode = true;
+
+if(localStorage.getItem('theme') === 'light'){
+    document.body.classList.add('light-mode');
+    themeIcon.classList.replace('fa-moon', 'fa-sun');
+    isDarkMode = false;
+}
+
+themeToggle.addEventListener('click', function(){
+    isDarkMode = !isDarkMode;
+    document.body.classList.toggle('light-mode', !isDarkMode);
+    themeIcon.classList.toggle('fa-moon', isDarkMode);
+    themeIcon.classList.toggle('fa-sun', !isDarkMode);
+    localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+});
+
+/* =====================================================
+11. EFFET TILT 3D
+===================================================== */
+
+document.querySelectorAll('[data-tilt]').forEach(card => {
+    card.addEventListener('mousemove', function(e){
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left, y = e.clientY - rect.top;
+        const rotateX = (y - rect.height/2) / 20, rotateY = (rect.width/2 - x) / 20;
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
+    });
+    card.addEventListener('mouseleave', function(){
+        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+        card.style.transition = 'transform 0.5s ease';
+    });
+    card.addEventListener('mouseenter', function(){ card.style.transition = 'transform 0.1s ease'; });
+});
+
+/* =====================================================
+12. VALIDATION FORMULAIRE
+===================================================== */
+
+const contactForm = document.getElementById('contactForm');
+const nameInput = document.getElementById('contactName');
+const emailInput = document.getElementById('contactEmail');
+const messageInput = document.getElementById('contactMessage');
+const nameError = document.getElementById('nameError');
+const emailError = document.getElementById('emailError');
+const messageError = document.getElementById('messageError');
+
+function validateName(){
+    const ok = nameInput.value.trim().length >= 2;
+    nameInput.classList.toggle('error', !ok); nameInput.classList.toggle('success', ok);
+    nameError.classList.toggle('show', !ok);
+    return ok;
+}
+function validateEmail(){
+    const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim());
+    emailInput.classList.toggle('error', !ok); emailInput.classList.toggle('success', ok);
+    emailError.classList.toggle('show', !ok);
+    return ok;
+}
+function validateMessage(){
+    const ok = messageInput.value.trim().length >= 10;
+    messageInput.classList.toggle('error', !ok); messageInput.classList.toggle('success', ok);
+    messageError.classList.toggle('show', !ok);
+    return ok;
+}
+
+nameInput.addEventListener('input', validateName);
+emailInput.addEventListener('input', validateEmail);
+messageInput.addEventListener('input', validateMessage);
+
+contactForm.addEventListener('submit', function(e){
+    if(!validateName() || !validateEmail() || !validateMessage()){
+        e.preventDefault();
+    }else{
+        e.preventDefault();
+        setTimeout(() => contactForm.submit(), 1500);
+    }
+});
+
+/* =====================================================
+13. COMPTEURS ANIMÉS
+===================================================== */
+
+let countersAnimated = false;
+function animateCounters(){
+    const section = document.querySelector('.stats-section');
+    if(!section || countersAnimated) return;
+    const rect = section.getBoundingClientRect();
+    if(rect.top < window.innerHeight && rect.bottom > 0){
+        countersAnimated = true;
+        document.querySelectorAll('.counter').forEach(c => {
+            const target = +c.getAttribute('data-target');
+            let current = 0;
+            const step = target / 80;
+            const update = () => {
+                current += step;
+                c.textContent = current < target ? Math.ceil(current) : target;
+                if(current < target) requestAnimationFrame(update);
+            };
+            update();
+        });
+    }
+}
+window.addEventListener('scroll', animateCounters);
+window.addEventListener('load', animateCounters);
+
+/* =====================================================
+14. PARTICULES
+===================================================== */
+
+const particlesContainer = document.getElementById('particles');
+const canvas = document.createElement('canvas');
+particlesContainer.appendChild(canvas);
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+let particlesArray = [];
+
+class Particle{
+    constructor(){
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 3;
+        this.speedX = Math.random() * 1 - 0.5;
+        this.speedY = Math.random() * 1 - 0.5;
+    }
+    update(){
+        this.x += this.speedX; this.y += this.speedY;
+        if(this.x > canvas.width) this.x = 0;
+        if(this.x < 0) this.x = canvas.width;
+        if(this.y > canvas.height) this.y = 0;
+        if(this.y < 0) this.y = canvas.height;
+    }
+    draw(){
+        ctx.fillStyle = '#27E1FF';
+        ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI*2); ctx.fill();
+    }
+}
+
+function initParticles(){ particlesArray = []; for(let i=0;i<130;i++) particlesArray.push(new Particle()); }
+initParticles();
+
+function connectParticles(){
+    for(let a=0;a<particlesArray.length;a++){
+        for(let b=a;b<particlesArray.length;b++){
+            const dx=particlesArray[a].x-particlesArray[b].x, dy=particlesArray[a].y-particlesArray[b].y;
+            if(dx*dx+dy*dy<9000){
+                ctx.strokeStyle='rgba(39,225,255,0.08)'; ctx.lineWidth=1;
+                ctx.beginPath(); ctx.moveTo(particlesArray[a].x,particlesArray[a].y); ctx.lineTo(particlesArray[b].x,particlesArray[b].y); ctx.stroke();
+            }
+        }
+    }
+}
+function animateParticles(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particlesArray.forEach(p=>{p.update();p.draw();});
+    connectParticles();
+    requestAnimationFrame(animateParticles);
+}
+animateParticles();
+window.addEventListener('resize',()=>{canvas.width=window.innerWidth;canvas.height=window.innerHeight;initParticles();});
+
+/* =====================================================
+15. ANIMATION SCROLL
+===================================================== */
+
+const observer = new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show');});},{threshold:0.1});
+document.querySelectorAll('.hidden').forEach(el=>observer.observe(el));
+
+/* =====================================================
+16. FERMETURE MENU MOBILE
+===================================================== */
+
+document.addEventListener("DOMContentLoaded",()=>{
+    document.querySelectorAll(".navbar-nav .nav-link").forEach(link=>{
+        link.addEventListener("click",()=>{
+            const collapse=document.getElementById("navbarNav");
+            if(collapse.classList.contains("show"))bootstrap.Collapse.getInstance(collapse)?.hide();
+        });
+    });
+});
+
+/* =====================================================
+17. TRADUCTIONS
+===================================================== */
+
+const translations = {
+fr:{
+    home:"Accueil",about:"À propos",services:"Services",contact:"Contact",
+    badge:"INNOVATION • TECHNOLOGIE • SOLUTIONS",
+    heroTitle:"La puissance de la technologie africaine",
+    heroText:"ELIRAM TECHNOLOGY accompagne les entreprises, organisations et particuliers dans leur transformation numérique grâce à des solutions modernes, intelligentes et innovantes adaptées aux besoins du marché africain.",
+    discover:"Découvrir nos services",contactBtn:"Nous contacter",expertiseTitle:"DOMAINES D'EXPERTISE",
+    it:"Informatique",network:"Réseaux",energy:"Énergie",security:"Sécurité",
+    aboutTitle:"À propos de ELIRAM",aboutDescription:"Une entreprise technologique moderne spécialisée dans les systèmes intelligents, les solutions numériques et l'innovation technologique en Afrique.",
+    presentationTitle:"Présentation",presentationText:"ELIRAM TECHNOLOGY intervient dans les technologies de l'information, les systèmes électroniques, les télécommunications, l'énergie et la sécurité intelligente.",
+    visionTitle:"Vision",visionText:"Devenir une référence technologique africaine grâce à des solutions innovantes, durables et performantes.",
+    missionTitle:"Mission",missionText:"Offrir des solutions technologiques fiables, accessibles et modernes afin d'accélérer la transformation numérique.",
+    servicesTitle:"Nos Services",servicesDescription:"Des solutions professionnelles adaptées aux besoins des entreprises et des particuliers.",
+    service1Title:"Services Informatiques",service1Text:"Développement logiciel, maintenance informatique, sécurisation des données et assistance technique.",
+    service2Title:"Systèmes Électroniques",service2Text:"Automatisation technologique, équipements intelligents et intégration électronique.",
+    service3Title:"Télécommunications",service3Text:"Installation réseau, Wi-Fi professionnel, maintenance et optimisation réseau.",
+    service4Title:"Énergie & Électrotechnique",service4Text:"Installation électrique, maintenance, onduleurs et solutions énergétiques modernes.",
+    service5Title:"Sécurité Technologique",service5Text:"Vidéosurveillance, alarmes intelligentes, contrôle d'accès et protection numérique.",
+    service6Title:"Technologies Automobiles",service6Text:"Diagnostic automobile, GPS, géolocalisation et solutions connectées.",
+    projectsCompleted:"Projets Réalisés",clientsSatisfied:"Clients satisfaits",techExperts:"Experts Tech",support247:"Support 24/7",
+    contactTitle:"Contactez ELIRAM",contactDescription:"Nous sommes disponibles pour accompagner vos projets technologiques et numériques.",
+    addressTitle:"Adresse",addressText:"N°08, Avenue du Grand Séminaire, Golf Tshamalalé, Commune Annexe, Lubumbashi — RDC",
+    phoneTitle:"Téléphone",emailTitle:"Email",sendMessage:"Envoyer le message",
+    footerSlogan:"Innovation • Technologie • Solutions",copyright:"© 2026 ELIRAM TECHNOLOGY — Tous droits réservés."
+},
+en:{
+    home:"Home",about:"About",services:"Services",contact:"Contact",
+    badge:"INNOVATION • TECHNOLOGY • SOLUTIONS",
+    heroTitle:"The Power of African Technology",
+    heroText:"ELIRAM TECHNOLOGY supports companies, organizations and individuals in their digital transformation through modern, intelligent and innovative solutions adapted to the African market.",
+    discover:"Discover Our Services",contactBtn:"Contact Us",expertiseTitle:"FIELDS OF EXPERTISE",
+    it:"Information Technology",network:"Networks",energy:"Energy",security:"Security",
+    aboutTitle:"About ELIRAM",aboutDescription:"A modern technology company specialized in intelligent systems, digital solutions and technological innovation in Africa.",
+    presentationTitle:"Presentation",presentationText:"ELIRAM TECHNOLOGY operates in information technology, electronic systems, telecommunications, energy and smart security.",
+    visionTitle:"Vision",visionText:"To become a leading African technology reference through innovative, sustainable and high-performance solutions.",
+    missionTitle:"Mission",missionText:"Provide reliable, accessible and modern technological solutions to accelerate digital transformation.",
+    servicesTitle:"Our Services",servicesDescription:"Professional solutions adapted to the needs of companies and individuals.",
+    service1Title:"IT Services",service1Text:"Software development, IT maintenance, data security and technical support.",
+    service2Title:"Electronic Systems",service2Text:"Technological automation, smart equipment and electronic integration.",
+    service3Title:"Telecommunications",service3Text:"Network installation, professional Wi-Fi, maintenance and network optimization.",
+    service4Title:"Energy & Electrical Engineering",service4Text:"Electrical installation, maintenance, UPS systems and modern energy solutions.",
+    service5Title:"Technology Security",service5Text:"Video surveillance, smart alarms, access control and digital protection.",
+    service6Title:"Automotive Technologies",service6Text:"Vehicle diagnostics, GPS tracking, geolocation and connected solutions.",
+    projectsCompleted:"Completed Projects",clientsSatisfied:"Satisfied Clients",techExperts:"Tech Experts",support247:"24/7 Support",
+    contactTitle:"Contact ELIRAM",contactDescription:"We are available to support your technology and digital projects.",
+    addressTitle:"Address",addressText:"No.08 Grand Séminaire Avenue, Golf Tshamalalé, Annexe Municipality, Lubumbashi — DRC",
+    phoneTitle:"Phone",emailTitle:"Email",sendMessage:"Send Message",
+    footerSlogan:"Innovation • Technology • Solutions",copyright:"© 2026 ELIRAM TECHNOLOGY — All rights reserved."
+}
+};
+
+/* =====================================================
+18. CHANGEMENT DE LANGUE
+===================================================== */
+
+const switcher = document.getElementById("languageSwitcher");
+function applyLanguage(lang){
+    document.documentElement.lang = lang;
+    document.querySelectorAll("[data-lang]").forEach(el=>{
+        if(translations[lang]?.[el.getAttribute("data-lang")]) el.innerHTML = translations[lang][el.getAttribute("data-lang")];
+    });
+    document.querySelectorAll("input, textarea").forEach(f=>{
+        f.placeholder = f.getAttribute(`data-placeholder-${lang}`) || f.placeholder;
+    });
+    localStorage.setItem("language", lang);
+    document.title = lang==="fr" ? "ELIRAM TECHNOLOGY | Innovation • Technologie • Solutions" : "ELIRAM TECHNOLOGY | Innovation • Technology • Solutions";
+}
+switcher.addEventListener("change",()=>applyLanguage(switcher.value));
+applyLanguage(localStorage.getItem("language")||"fr");
+
+/* =====================================================
+19. EFFET RIPPLE
+===================================================== */
+
+document.querySelectorAll('.btn-primary-custom').forEach(b=>{
+    b.addEventListener('click',function(e){
+        const r=document.createElement('span');
+        r.style.cssText=`position:absolute;background:rgba(255,255,255,0.5);border-radius:50%;pointer-events:none;width:100px;height:100px;left:${e.offsetX-50}px;top:${e.offsetY-50}px;animation:rippleEffect 0.6s ease-out;`;
+        this.style.position='relative';this.style.overflow='hidden';
+        this.appendChild(r);
+        setTimeout(()=>r.remove(),600);
+    });
+});
+const rs=document.createElement('style');
+rs.textContent=`@keyframes rippleEffect{from{transform:scale(0);opacity:1}to{transform:scale(4);opacity:0}}`;
+document.head.appendChild(rs);
+
+console.log('%c🚀 ELIRAM TECHNOLOGY %c| Innovation • Technologie • Solutions',
+    'color:#27E1FF;font-size:18px;font-weight:bold;','color:#17A8F5;font-size:12px;');
+
+</script>
+
+</body>
+</html>
